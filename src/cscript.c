@@ -82,10 +82,12 @@ int main(int argc, char **argv)
 		exit(status);
 	}
 
+#ifndef DEBUG
 	status = cleanup(temp_cnt, temp_filenames);
 	if (status < 0) {
 		perror("Cleanup failed\n");
 		exit(status);
 	}
+#endif
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "cscript.h"
 
 #include <unistd.h>
+#include <string.h>
 #include <fcntl.h>
 
 int preprocess_code(int code_fd, int processed_fd, bool main_exist)
@@ -21,8 +22,16 @@ int preprocess_code(int code_fd, int processed_fd, bool main_exist)
 		close(prefix_fd);
 	}
 
-	while ((read_len = read(code_fd, buf, MAX_BUF)) > 0)
+	bool first_read = true;
+	while ((read_len = read(code_fd, buf, MAX_BUF)) > 0) {
+		if (first_read && read_len >= 2 && strstr(buf, SHEBANG_PREFIX) == buf) {
+			int shebang_len = strchr(buf, '\n') - buf;
+			if (!shebang_len) 
+				return -1;
+			memmove(buf, buf + shebang_len, (read_len -= shebang_len));
+		}
 		write(processed_fd, buf, read_len);
+	}
 
 	if (!main_exist) {
 		int suffix_fd = open(CODE_SUFFIX_FILE, O_RDONLY);

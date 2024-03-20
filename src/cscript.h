@@ -7,6 +7,9 @@
 #define CXX_PATH "/bin/gcc"
 #define CXX "gcc"
 
+#define SHEBANG_PREFIX "#!"
+#define MAIN_STRING "main("
+
 #ifdef DEBUG
 #define CONFIG_DIR "/storage/konchin/cscript/config/"
 #else

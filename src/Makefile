@@ -3,10 +3,11 @@ CXXFLAGS +=
 
 .PHONY: all clean
 
-all: ../cscript
+all: *.c *.h
+	gcc -o ../cscript $(CXXFLAGS) $^
 
-../cscript: *.c *.h
-	gcc -o $@ $(CXXFLAGS) $^
+debug: *.c *.h
+	gcc -o ../cscript $(CXXFLAGS) $(DEBUGFLAGS) $^
 
 clean:
 	rm ../cscript

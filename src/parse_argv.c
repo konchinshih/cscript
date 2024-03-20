@@ -12,7 +12,7 @@ int parse_argv(int argc, char **argv,
 {
 	int target_argc = 1;
 	*source_fd = -1;
-	printf("0: %s\n", argv[0]);
+	debug("0: %s\n", argv[0]);
 	for (int i = 1; i < argc; i++) {
 		printf("%d: %s\n", i, argv[i]);
 		if (strlen(argv[i]) && argv[i][0] == '-') {
@@ -30,7 +30,7 @@ int parse_argv(int argc, char **argv,
 					return -1;
 
 				off_t start = lseek(*source_fd, (size_t)0, SEEK_CUR);
-				printf("%d: %s\n", i + 1, argv[i + 1]);
+				debug("%d: %s\n", i + 1, argv[i + 1]);
 				write(*source_fd, argv[i + 1], strlen(argv[i + 1]) + 1);
 				lseek(*source_fd, start, SEEK_SET);
 
