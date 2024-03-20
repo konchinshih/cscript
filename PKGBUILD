@@ -1,7 +1,7 @@
 # Maintainer: konchin.shih@gmail.com
 pkgname=cscript
 pkgver=0
-pkgrel=2
+pkgrel=3
 epoch=
 pkgdesc=""
 arch=('any')
