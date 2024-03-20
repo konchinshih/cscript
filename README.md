@@ -10,7 +10,7 @@ There are several ways to use this program.
 
 `test.c`
 ```c
-!/bin/c
+#!/bin/c
 printf("hello, world\n");
 ```
 
