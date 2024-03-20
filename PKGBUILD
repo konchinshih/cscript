@@ -8,7 +8,7 @@ arch=('any')
 url="https://github.com/konchinshih/cscript"
 license=('GPL')
 groups=()
-depends=('gcc' 'coreutils' 'bash')
+depends=('gcc' 'coreutils')
 makedepends=()
 checkdepends=()
 optdepends=()
@@ -31,7 +31,7 @@ package() {
 	install -Dm644 "header" "$pkgdir/etc/cscript/header"
 	install -Dm644 "prefix" "$pkgdir/etc/cscript/prefix"
 	install -Dm644 "suffix" "$pkgdir/etc/cscript/suffix"
-	make -C "$srcdir/src"
+	make -C "$srcdir/src" # debug
 	install -Dm755 -d "$pkgdir/usr/bin"
   install -Dm755 "$srcdir/cscript" "$pkgdir/usr/bin/"
 	ln -s "/usr/bin/cscript" "$pkgdir/usr/bin/c"

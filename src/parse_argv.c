@@ -14,7 +14,7 @@ int parse_argv(int argc, char **argv,
 	*source_fd = -1;
 	debug("0: %s\n", argv[0]);
 	for (int i = 1; i < argc; i++) {
-		printf("%d: %s\n", i, argv[i]);
+		debug("%d: %s\n", i, argv[i]);
 		if (strlen(argv[i]) && argv[i][0] == '-') {
 			if (strcmp(argv[i], "-") == 0) {
 				*source_fd = STDIN_FILENO;

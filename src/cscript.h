@@ -10,11 +10,11 @@
 #define SHEBANG_PREFIX "#!"
 #define MAIN_STRING "main("
 
-#ifdef DEBUG
-#define CONFIG_DIR "/storage/konchin/cscript/config/"
-#else
+// #ifdef DEBUG
+// #define CONFIG_DIR "/storage/konchin/cscript/config/"
+// #else
 #define CONFIG_DIR "/etc/cscript/"
-#endif
+// #endif
 
 #define GCC_PARAMS_FILE CONFIG_DIR "gcc_params"
 

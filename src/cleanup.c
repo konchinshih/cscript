@@ -10,4 +10,5 @@ int cleanup(int temp_cnt, char **temp_filenames)
 			return -1;
 		free(temp_filenames[i]);
 	}
+	return 0;
 }

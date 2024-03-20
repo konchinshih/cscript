@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	status = parse_argv(argc, argv, 
 	                    &source_fd, target_argv,
 											&temp_cnt, temp_filenames);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Parse error\n");
 		exit(status);
 	}
@@ -35,10 +35,10 @@ int main(int argc, char **argv)
 	temp_filenames[temp_cnt++] = code_filename;
 	debug("temp_filename <%s> created\n", code_filename);
 
-	bool main_exist;
+	bool main_exist = false;
 	status = read_code(source_fd, code_fd, &main_exist);
 	close(source_fd);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Read file error\n");
 		exit(status);
 	}
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 	char *processed_filename = mktmp(&processed_fd);
 	temp_filenames[temp_cnt++] = processed_filename;
 	status = preprocess_code(code_fd, processed_fd, main_exist);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Preprocess failed\n");
 		exit(status);
 	}
@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 
 	status = compile(processed_fd, target_filename);
 	close(code_fd);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Compile failed\n");
 		exit(status);
 	}
@@ -77,14 +77,14 @@ int main(int argc, char **argv)
 
 	status = run(target_filename, target_argv);
 	free(target_argv);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Run failed\n");
 		exit(status);
 	}
 
 #ifndef DEBUG
 	status = cleanup(temp_cnt, temp_filenames);
-	if (status < 0) {
+	if (status != 0) {
 		perror("Cleanup failed\n");
 		exit(status);
 	}
