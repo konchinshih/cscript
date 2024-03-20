@@ -16,7 +16,7 @@ section "Generate SRCINFO"
 makepkg --printsrcinfo > .SRCINFO
 
 section "Make tarball"
-tar -cvzf "$pkgname-$pkgver.tar.gz" .SRCINFO 'src/cscript'
+tar -cvzf "$pkgname-$pkgver.tar.gz" .SRCINFO src/* config/*
 
 section "Update checksum"
 updpkgsums

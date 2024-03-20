@@ -1,7 +1,7 @@
 # Maintainer: konchin.shih@gmail.com
 pkgname=cscript
 pkgver=0
-pkgrel=1
+pkgrel=2
 epoch=
 pkgdesc=""
 arch=('any')
@@ -26,9 +26,14 @@ validpgpkeys=()
 BUILDENV+=('!check')
 
 package() {
-  cd "$srcdir/src"
+	install -Dm755 -d "$pkgdir/etc/cscript"
+	cd "$srcdir/config"
+	install -Dm644 "header" "$pkgdir/etc/cscript/header"
+	install -Dm644 "prefix" "$pkgdir/etc/cscript/prefix"
+	install -Dm644 "suffix" "$pkgdir/etc/cscript/suffix"
+	make -C "$srcdir/src"
 	install -Dm755 -d "$pkgdir/usr/bin"
-  install -Dm755 "cscript" "$pkgdir/usr/bin/"
+  install -Dm755 "$srcdir/cscript" "$pkgdir/usr/bin/"
 	ln -s "/usr/bin/cscript" "$pkgdir/usr/bin/c"
 }
 
